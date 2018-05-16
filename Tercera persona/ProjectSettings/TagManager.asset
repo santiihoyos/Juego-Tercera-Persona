@@ -15,12 +15,12 @@ TagManager:
   - 
   - PostProcessing
   - caminable
-  - cuboCaminable
+  - noCaminable
   - 
   - 
   - seleccionable
-  - 
-  - 
+  - personaje
+  - enemigo
   - 
   - 
   - 
