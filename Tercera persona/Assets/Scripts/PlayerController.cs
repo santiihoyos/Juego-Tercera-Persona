@@ -28,26 +28,46 @@ public class PlayerController : MonoBehaviour
     private LayerMask _layerActualBajoElCursor;
     private int _mascaraChocado;
     private AnimationClip _clipAtaque;
+    private GameObject _disparoActual;
+    private bool _disparando = false;
     
     private void Start()
     {
-        foreach (var clip in GetComponent<Animator>().runtimeAnimatorController.animationClips)
+        /* foreach (var clip in GetComponent<Animator>().runtimeAnimatorController.animationClips)
         {
             if (clip.name == "ataque1")
             {
                 clip.AddEvent(new AnimationEvent
                 {
                     functionName = "InstanciaAtaque",
-                    time = 0.8f,
+                    time = 0.8f
                 });
             }
-        }
+        } */
     }
 
     void InstanciaAtaque()
     {
         transform.LookAt(_atacadoActual.transform);
-        var hechizo = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+        var disparo = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+        disparo.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 10f, ForceMode.VelocityChange);
+    }
+
+    void SpawmeaPhoton()
+    {
+
+    }
+
+    void LanzaPhoton()
+    {
+        print("Lanza disparo!");
+        //_disparoActual.transform.parent = null;
+        //_disparoActual.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 10f, ForceMode.VelocityChange);
+        print("Spawmea disparo!");
+        _disparoActual = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+        _disparoActual.GetComponent<EffectSettings>().Target = _atacadoActual;
+        //_disparoActual.transform.parent = _posicionLanzadorHechizos.transform;
+        _disparando = false;
     }
 
     // Update is called once per frame
@@ -84,10 +104,16 @@ public class PlayerController : MonoBehaviour
                 {
                     _atacadoActual = hit.collider.gameObject;
                     GetComponent<Animator>().SetTrigger("ataca");
+                    _disparando = true;
                 }
 
                 print(LayerMask.LayerToName(hit.collider.gameObject.layer));
             }
+        }
+
+        if (_disparando)
+        {
+            transform.LookAt(_atacadoActual.transform);
         }
     }
 }
