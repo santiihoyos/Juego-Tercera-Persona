@@ -14,15 +14,15 @@ public class EnemigoController : MonoBehaviour {
 		
 	}
 
-	private void OnMouseOver()
-	{
-		print("over");
-		GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0.06f);
-	}
-
 	private void OnMouseEnter()
 	{
 		print("entra");
 		GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0.06f);
+	}
+
+	private void OnMouseExit()
+	{
+		print("entra");
+		GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0.00f);
 	}
 }

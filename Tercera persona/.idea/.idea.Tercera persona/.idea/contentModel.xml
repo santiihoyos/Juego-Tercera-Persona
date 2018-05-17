@@ -8,6 +8,107 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets\EnemigoController.cs" t="Include" />
       <e p="Assets\Outline.shader" t="Include" />
+      <e p="Assets\Realistic Effects Pack" t="Include">
+        <e p="Materials" t="Include">
+          <e p="Objects" t="Include">
+            <e p="FireJetPack" t="Include">
+              <e p="FlyDemo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Readme.txt" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="Demo" t="Include">
+            <e p="MyGUI3_1.cs" t="Include" />
+          </e>
+          <e p="Prefabs" t="Include">
+            <e p="Balls" t="Include">
+              <e p="AddMaterialOnHit.cs" t="Include" />
+              <e p="AnimatorBehaviour.cs" t="Include" />
+              <e p="IceOffsetBehaviour.cs" t="Include" />
+              <e p="LazyLoad.cs" t="Include" />
+              <e p="LineProjectileCollisionBehaviour.cs" t="Include" />
+              <e p="ProjectileCollisionBehaviour.cs" t="Include" />
+              <e p="ScaleParticlesFromBound.cs" t="Include" />
+            </e>
+            <e p="Buffs" t="Include">
+              <e p="AnimationSpeedDebuff.cs" t="Include" />
+              <e p="DebuffOnEnemyFromCollision.cs" t="Include" />
+              <e p="ShieldCollisionBehaviour.cs" t="Include" />
+              <e p="WaterUvAnimation.cs" t="Include" />
+            </e>
+            <e p="Objects" t="Include">
+              <e p="MoveOnGround.cs" t="Include" />
+              <e p="OffsetOnNormal.cs" t="Include" />
+              <e p="OnRigidbodySendCollision.cs" t="Include" />
+              <e p="ResetPositionOnDiactivated.cs" t="Include" />
+            </e>
+            <e p="Shots" t="Include">
+              <e p="LineRendererBehaviour.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Share" t="Include">
+            <e p="Billboard.cs" t="Include" />
+            <e p="CollisionActiveBehaviour.cs" t="Include" />
+            <e p="DeadTime.cs" t="Include" />
+            <e p="DistortionMobile.cs" t="Include" />
+            <e p="EffectSettings.cs" t="Include" />
+            <e p="FadeInOutLight.cs" t="Include" />
+            <e p="FadeInOutParticles.cs" t="Include" />
+            <e p="FadeInOutScale.cs" t="Include" />
+            <e p="FadeInOutShaderColor.cs" t="Include" />
+            <e p="FadeInOutShaderFloat.cs" t="Include" />
+            <e p="FadeInOutSound.cs" t="Include" />
+            <e p="FadeInOutStatus.cs" t="Include" />
+            <e p="FixShaderQueue.cs" t="Include" />
+            <e p="OnStartSendCollision.cs" t="Include" />
+            <e p="RotateAround.cs" t="Include" />
+            <e p="SetPositionOnHit.cs" t="Include" />
+            <e p="UVTextureAnimator.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="AlphaBlended.shader" t="Include" />
+          <e p="AlphaBlendedNoSmooth.shader" t="Include" />
+          <e p="Distortion" t="Include">
+            <e p="DistortionCullBack.shader" t="Include" />
+            <e p="DistortionCullOff.shader" t="Include" />
+            <e p="DistortionParticlesCutout.shader" t="Include" />
+            <e p="Free" t="Include">
+              <e p="FreeDistortionCullBack.shader" t="Include" />
+              <e p="FreeDistortionCullOff.shader" t="Include" />
+              <e p="FreeDistortionCutOut.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Explosion.shader" t="Include" />
+          <e p="GlowAdditiveSimple.shader" t="Include" />
+          <e p="GlowAdditiveTwoColor.shader" t="Include" />
+          <e p="IceShaderDistortion.shader" t="Include" />
+          <e p="IceShaderFastSimple.shader" t="Include" />
+          <e p="IceVert.shader" t="Include" />
+          <e p="Mobile" t="Include">
+            <e p="Distortion" t="Include">
+              <e p="DistortionCullBack.shader" t="Include" />
+              <e p="DistortionCullOff.shader" t="Include" />
+              <e p="DistortionParticlesCutout.shader" t="Include" />
+            </e>
+            <e p="IceShaderDistortion.shader" t="Include" />
+            <e p="IceVert.shader" t="Include" />
+            <e p="SlimeCutOut.shader" t="Include" />
+            <e p="Water.shader" t="Include" />
+          </e>
+          <e p="MultiplyDouble.shader" t="Include" />
+          <e p="ParticleAdd.shader" t="Include" />
+          <e p="ParticleAddNoSmooth.shader" t="Include" />
+          <e p="Particles.shader" t="Include" />
+          <e p="Projectors" t="Include">
+            <e p="ProjectorAdditive.shader" t="Include" />
+            <e p="ProjectorBlended.shader" t="Include" />
+          </e>
+          <e p="SlimeCutOut.shader" t="Include" />
+          <e p="Water.shader" t="Include" />
+        </e>
+      </e>
       <e p="Assets\Scripts" t="Include">
         <e p="CameraController.cs" t="Include" />
         <e p="PlayerController.cs" t="Include" />
