@@ -9,8 +9,6 @@ public class PunteroController : MonoBehaviour
     // Update is called once per frame
     public void OnLayerChange(string layerName)
     {
-        print("layer: " + layerName);
-        
         switch (layerName)
         {
             case "caminable":

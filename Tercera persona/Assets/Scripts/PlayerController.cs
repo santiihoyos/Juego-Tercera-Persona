@@ -9,9 +9,15 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject MarcadorDestino;
     public LayerMask caminable;
-    public LayerMask seleccionable;
+    public LayerMask Seleccionable;
     public LayerMask atacable;
+    public GameObject[] PrefabAtaques;
 
+    private GameObject _atacadoActual;
+    
+    [SerializeField]
+    private GameObject _posicionLanzadorHechizos;
+    
     [Serializable]
     public class LayerChangeEvent : UnityEvent<string>
     {
@@ -21,7 +27,29 @@ public class PlayerController : MonoBehaviour
 
     private LayerMask _layerActualBajoElCursor;
     private int _mascaraChocado;
+    private AnimationClip _clipAtaque;
     
+    private void Start()
+    {
+        foreach (var clip in GetComponent<Animator>().runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == "ataque1")
+            {
+                clip.AddEvent(new AnimationEvent
+                {
+                    functionName = "InstanciaAtaque",
+                    time = 0.8f,
+                });
+            }
+        }
+    }
+
+    void InstanciaAtaque()
+    {
+        transform.LookAt(_atacadoActual.transform);
+        var hechizo = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +66,6 @@ public class PlayerController : MonoBehaviour
             {
                 OnLayerClickChangeEvent.Invoke(LayerMask.LayerToName(hit.collider.gameObject.layer));
                 _layerActualBajoElCursor = hit.collider.gameObject.layer;
-                print("Detectada otra capa");
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -52,6 +79,11 @@ public class PlayerController : MonoBehaviour
                     pos.y = 0.1f;
                     MarcadorDestino.transform.position = pos;
                     GetComponent<AICharacterControl>().target = MarcadorDestino.transform;
+                }
+                else if ((_mascaraChocado & atacable.value) == _mascaraChocado)
+                {
+                    _atacadoActual = hit.collider.gameObject;
+                    GetComponent<Animator>().SetTrigger("ataca");
                 }
 
                 print(LayerMask.LayerToName(hit.collider.gameObject.layer));
