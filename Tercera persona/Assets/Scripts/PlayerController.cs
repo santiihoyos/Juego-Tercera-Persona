@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
     public LayerMask Seleccionable;
     public LayerMask atacable;
     public GameObject[] PrefabAtaques;
+    public ControladorUI ControladorUi;
 
-    private GameObject _atacadoActual;
-    
-    [SerializeField]
-    private GameObject _posicionLanzadorHechizos;
-    
+    [Space] public float Vida;
+    public float Mana;
+
+
+    [SerializeField] private float _manaMax;
+    [SerializeField] private float _vidaMax;
+    [SerializeField] private GameObject _atacadoActual;
+    [SerializeField] private GameObject _posicionLanzadorHechizos;
+
     [Serializable]
     public class LayerChangeEvent : UnityEvent<string>
     {
@@ -30,32 +35,24 @@ public class PlayerController : MonoBehaviour
     private AnimationClip _clipAtaque;
     private GameObject _disparoActual;
     private bool _disparando = false;
-    
-    private void Start()
-    {
-        /* foreach (var clip in GetComponent<Animator>().runtimeAnimatorController.animationClips)
-        {
-            if (clip.name == "ataque1")
-            {
-                clip.AddEvent(new AnimationEvent
-                {
-                    functionName = "InstanciaAtaque",
-                    time = 0.8f
-                });
-            }
-        } */
-    }
+
 
     void InstanciaAtaque()
     {
         transform.LookAt(_atacadoActual.transform);
-        var disparo = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+        var disparo = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position,
+            _posicionLanzadorHechizos.transform.rotation);
         disparo.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 10f, ForceMode.VelocityChange);
     }
 
     void SpawmeaPhoton()
     {
+    }
 
+    private void Start()
+    {
+        Mana = _manaMax;
+        Vida = _vidaMax;
     }
 
     void LanzaPhoton()
@@ -64,7 +61,8 @@ public class PlayerController : MonoBehaviour
         //_disparoActual.transform.parent = null;
         //_disparoActual.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 10f, ForceMode.VelocityChange);
         print("Spawmea disparo!");
-        _disparoActual = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position, _posicionLanzadorHechizos.transform.rotation);
+        _disparoActual = Instantiate(PrefabAtaques[0], _posicionLanzadorHechizos.transform.position,
+            _posicionLanzadorHechizos.transform.rotation);
         _disparoActual.GetComponent<EffectSettings>().Target = _atacadoActual;
         //_disparoActual.transform.parent = _posicionLanzadorHechizos.transform;
         _disparando = false;
@@ -81,7 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             //si tenemos en cuenta qeu es una potencia de 2 es facil calcularla
             _mascaraChocado = (int) Mathf.Pow(2, hit.collider.gameObject.layer);
-            
+
             if (_layerActualBajoElCursor != hit.collider.gameObject.layer)
             {
                 OnLayerClickChangeEvent.Invoke(LayerMask.LayerToName(hit.collider.gameObject.layer));
@@ -102,9 +100,14 @@ public class PlayerController : MonoBehaviour
                 }
                 else if ((_mascaraChocado & atacable.value) == _mascaraChocado)
                 {
-                    _atacadoActual = hit.collider.gameObject;
-                    GetComponent<Animator>().SetTrigger("ataca");
-                    _disparando = true;
+                    if (Mana >= 10)
+                    {
+                        _atacadoActual = hit.collider.gameObject;
+                        GetComponent<Animator>().SetTrigger("ataca");
+                        _disparando = true;
+                        Mana -= 10;
+                        ControladorUi.SetMana(Mana / _manaMax);
+                    }
                 }
 
                 print(LayerMask.LayerToName(hit.collider.gameObject.layer));
