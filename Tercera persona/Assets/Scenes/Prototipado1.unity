@@ -927,6 +927,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 725752124}
+--- !u!136 &289894345
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 289894335}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.2174873
+  m_Height: 2.4349747
+  m_Direction: 1
+  m_Center: {x: -0.14339828, y: 1.0670047, z: 0.09358978}
 --- !u!1 &310271268
 GameObject:
   m_ObjectHideFlags: 0
