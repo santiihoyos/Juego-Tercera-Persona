@@ -2,27 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemigoController : MonoBehaviour {
+public class EnemigoController : MonoBehaviour
+{
+    public Renderer Renderer;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+    }
 
-	private void OnMouseEnter()
-	{
-		print("entra");
-		GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0.06f);
-	}
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
-	private void OnMouseExit()
-	{
-		print("entra");
-		GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0.00f);
-	}
+    private void OnMouseEnter()
+    {
+        if (Renderer != null)
+        {
+            Renderer.materials[1].SetFloat("_Outline", 0.06f);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (Renderer != null)
+        {
+            Renderer.materials[1].SetFloat("_Outline", 0f);
+        }
+    }
 }
